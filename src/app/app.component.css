@@ -1,0 +1,82 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    /* Prevent scroll bar on the body */
+}
+
+.header,
+.footer {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3f51b5; /* Primary color for header and footer */
+    color: white; /* Text color for header and footer */
+}
+
+.header {
+    top: 0;
+}
+
+.footer {
+    bottom: 0;
+    text-align: center;
+}
+
+.header-text {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.footer-text {
+    font-size: 1rem;
+}
+
+.content {
+    position: fixed;
+    top: 64px;
+    /* Adjust based on header height */
+    bottom: 64px;
+    /* Adjust based on footer height */
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    background-color: #f0f0f0;
+    /* Light grey background color */
+    padding: 20px;
+}
+
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-card {
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 20px;
+
+}
+
+.home-link {
+
+    margin-left: 1000px;
+    /* Add margin to move the link to the right */
+}
+@media (min-width: 768px) {
+    .content {
+        padding: 40px;
+    }
+}

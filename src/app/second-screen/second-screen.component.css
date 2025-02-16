@@ -1,0 +1,21 @@
+.second-screen-container {
+    height: 100%;
+    /* Full height of the content area */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Light grey background color */
+    overflow: hidden;
+    /* Prevent scroll bar on the second screen */
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 20px;
+}

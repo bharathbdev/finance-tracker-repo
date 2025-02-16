@@ -1,0 +1,57 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 100%;">
+        <h2 class="text-center mb-4">Product Offerings</h2>
+        <p class="text-center mb-4">Thanks for participating, choose your next best product:</p>
+        <div class="form-container">
+            <form>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.homeLoan" name="homeLoan">Home loan</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.personalLoan" name="personalLoan">Personal
+                        loan</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.loanAgainstProperty" name="loanAgainstProperty">Loan
+                        against property</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.carLoan" name="carLoan">Car loan</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.fastTag" name="fastTag">Fast tag</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.travelCards" name="travelCards">Travel
+                        cards</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.travelInsurance" name="travelInsurance">Travel
+                        insurance</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.educationLoan" name="educationLoan">Education
+                        loan</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.lifeInsurance" name="lifeInsurance">Life
+                        insurance</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.healthInsurance" name="healthInsurance">Health
+                        insurance</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.dematAccount" name="dematAccount">Demat
+                        account</mat-checkbox>
+                </div>
+                <div class="form-group mb-3">
+                    <mat-checkbox [(ngModel)]="productDisplay.startupCurrentAccount"
+                        name="startupCurrentAccount">Startup current account</mat-checkbox>
+                </div>
+                <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+                <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+            </form>
+        </div>
+    </mat-card>
+</div>

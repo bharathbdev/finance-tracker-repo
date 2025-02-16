@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="header">
+  <span class="header-text">Finance Tracker</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/" class="home-link">Home</a>
+  <a mat-button (click)="exportData()" class="export-link">Export</a>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+<mat-toolbar color="primary" class="footer">
+  <span class="footer-text">&copy; 2025 Finance Tracker. All rights reserved.</span>
+</mat-toolbar>

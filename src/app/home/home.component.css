@@ -1,0 +1,27 @@
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    /* Light grey background color */
+    text-align: center;
+    position: fixed;
+    /* Ensure the container is fixed */
+    top: 0;
+    left: 0;
+}
+
+.welcome-message {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+    /* Dark grey color */
+}
+
+.start-button {
+    font-size: 1.5rem;
+    padding: 10px 20px;
+}

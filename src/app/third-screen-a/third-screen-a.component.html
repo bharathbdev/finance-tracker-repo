@@ -1,0 +1,111 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 80vh; overflow-y: auto;">
+        <h2 class="text-center mb-4">CUSTOMER PROFILING</h2>
+        <form class="form-container">
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>NAME</mat-label>
+                <input matInput type="text" [(ngModel)]="profile.name" name="name" placeholder="Enter your name">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>AGE</mat-label>
+                <mat-select [(ngModel)]="profile.age" name="age">
+                    <mat-option value="18-23">18 – 23</mat-option>
+                    <mat-option value="24-29">24 – 29</mat-option>
+                    <mat-option value="30-35">30 – 35</mat-option>
+                    <mat-option value="36-45">36 – 45</mat-option>
+                    <mat-option value="46-53">46 – 53</mat-option>
+                    <mat-option value="54-60">54 – 60</mat-option>
+                    <mat-option value="60+">60 +</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div class="form-group mb-4">
+                <label>GENDER</label>
+                <mat-radio-group [(ngModel)]="profile.gender" name="gender" class="d-flex flex-column">
+                    <mat-radio-button value="male">Male</mat-radio-button>
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                    <mat-radio-button value="others">Others</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>LOCATION (Living area)</mat-label>
+                <mat-select [(ngModel)]="profile.location" name="location">
+                    <mat-option value="rural">Rural</mat-option>
+                    <mat-option value="semi-urban">Semi-urban</mat-option>
+                    <mat-option value="urban">Urban</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>PINCODE</mat-label>
+                <input matInput type="text" [(ngModel)]="profile.pincode" name="pincode"
+                    placeholder="Enter your pincode">
+            </mat-form-field>
+            <div class="form-group mb-4">
+                <label>PRIORITY LANGUAGES</label>
+                <div>
+                    <mat-checkbox [(ngModel)]="profile.languages.hindi" name="languages.hindi"
+                        value="hindi">Hindi</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.english" name="languages.english"
+                        value="english">English</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.marathi" name="languages.marathi"
+                        value="marathi">Marathi</mat-checkbox>
+                    <!-- Add more languages as needed -->
+                </div>
+            </div>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>OCCUPATION</mat-label>
+                <mat-select [(ngModel)]="profile.occupation" name="occupation">
+                    <mat-option value="salaried">Salaried</mat-option>
+                    <mat-option value="self-employed">Self-employed</mat-option>
+                    <mat-option value="others">Others</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>INCOME</mat-label>
+                <input matInput type="text" [(ngModel)]="profile.income" name="income" placeholder="Enter your income">
+            </mat-form-field>
+            <div class="form-group mb-4">
+                <label>MARITAL STATUS</label>
+                <mat-radio-group [(ngModel)]="profile.maritalStatus" name="maritalStatus" class="d-flex flex-column">
+                    <mat-radio-button value="married">Married</mat-radio-button>
+                    <mat-radio-button value="unmarried">Unmarried</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>DEPENDENT FAMILY MEMBERS</mat-label>
+                <mat-select [(ngModel)]="profile.dependents" name="dependents">
+                    <mat-option value="0">0</mat-option>
+                    <mat-option value="1-2">1-2</mat-option>
+                    <mat-option value="3-4">3-4</mat-option>
+                    <mat-option value="4+">4+</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>MONTHLY SAVINGS</mat-label>
+                <input matInput type="text" [(ngModel)]="profile.savings" name="savings"
+                    placeholder="Enter your monthly savings">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>YOUR NEXT FINANCIAL GOAL</mat-label>
+                <mat-select [(ngModel)]="profile.financialGoal" name="financialGoal">
+                    <mat-option value="home">Build/Buy a home</mat-option>
+                    <mat-option value="vehicle">Buy a vehicle</mat-option>
+                    <mat-option value="education">Fund for Children’s/Own education</mat-option>
+                    <mat-option value="marriage">Planning to get Married</mat-option>
+                    <mat-option value="travel">Planning to Travel</mat-option>
+                    <mat-option value="business">Planning to start a Business (Start-up)</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>INSURANCE</mat-label>
+                <mat-select [(ngModel)]="profile.insurance" name="insurance">
+                    <mat-option value="life">Life</mat-option>
+                    <mat-option value="health">Health</mat-option>
+                    <mat-option value="both">Both</mat-option>
+                    <mat-option value="none">None</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+        </form>
+    </mat-card>
+</div>

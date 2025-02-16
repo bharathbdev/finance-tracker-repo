@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 128px);
+    /* Adjust based on header and footer height */
+    padding: 20px;
+    background-color: #f0f0f0;
+    /* Light grey background color */
+    overflow: hidden;
+    /* Prevent scroll bar on the outer container */
+}
+
+.mat-card {
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    /* Full height of the container */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Prevent scroll bar on the card */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Allow scroll bar for the form */
+}
+
+.form-field {
+    width: 100%;
+}

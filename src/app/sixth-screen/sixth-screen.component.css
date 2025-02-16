@@ -1,0 +1,25 @@
+/* filepath: /C:/Users/Bharath.B/3D Objects/angularProject/finance-tracker/src/app/sixth-screen/sixth-screen.component.css */
+.container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.mat-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+input {
+    width: 60px;
+    text-align: center;
+}
+
+.chart-container {
+    margin-top: 20px;
+}

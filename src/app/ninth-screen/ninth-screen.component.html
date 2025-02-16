@@ -1,0 +1,27 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">Tax Planning</h2>
+        <form class="form-container">
+            <div class="form-group mb-3">
+                <label>Do you want tax planning?</label>
+                <mat-radio-group [(ngModel)]="taxPlan.taxPlanning" name="taxPlanning">
+                    <mat-radio-button value="yes">Yes</mat-radio-button>
+                    <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
+                <label>Which regime do you prefer?</label>
+                <mat-radio-group [(ngModel)]="taxPlan.taxRegime" name="taxRegime">
+                    <mat-radio-button value="old">Old</mat-radio-button>
+                    <mat-radio-button value="new">New</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
+                <label>Deduction table:</label>
+                <p>Health insurance premium, PPF, etc.</p>
+            </div>
+            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+        </form>
+    </mat-card>
+</div>

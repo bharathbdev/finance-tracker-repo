@@ -1,0 +1,35 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">ALLOCATION</h2>
+        <p class="text-center mb-4">AS PER YOUR SAVINGS YOU CAN TEST YOUR INVESTMENT PLAN (LOAD THE REQUIRED AMOUNT) IN
+            PERCENTAGE</p>
+        <form class="form-container">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>EQUITY MF</th>
+                        <th>DEBT</th>
+                        <th>FD/RD</th>
+                        <th>GOLD</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input matInput type="number" [(ngModel)]="allocation.equityMf" name="equityMf"
+                                placeholder="Enter %" class="form-control"></td>
+                        <td><input matInput type="number" [(ngModel)]="allocation.debt" name="debt"
+                                placeholder="Enter %" class="form-control"></td>
+                        <td><input matInput type="number" [(ngModel)]="allocation.fdRd" name="fdRd"
+                                placeholder="Enter %" class="form-control"></td>
+                        <td><input matInput type="number" [(ngModel)]="allocation.gold" name="gold"
+                                placeholder="Enter %" class="form-control"></td>
+                        <td class="text-center">FROM YOUR SAVINGS YOUR ALLOTMENT OF 100% IS COMPLETE</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+        </form>
+    </mat-card>
+</div>

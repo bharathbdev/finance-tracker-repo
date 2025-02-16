@@ -1,0 +1,23 @@
+<div class="first-screen-container d-flex flex-column align-items-center justify-content-center">
+    <div class="card p-4" style="width: 100%; max-width: 400px;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form>
+            <div class="form-group mb-3">
+                <label for="email">Email-id:</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email"
+                    placeholder="Enter your email">
+            </div>
+            <div class="form-group mb-3">
+                <label for="mobile">Mobile No:</label>
+                <input type="tel" class="form-control" id="mobile" [(ngModel)]="mobile" name="mobile"
+                    placeholder="Enter your mobile number">
+            </div>
+            <button type="button" class="btn btn-primary w-100" (click)="navigateToNext()"
+                [disabled]="isNextDisabled">Login</button>
+        </form>
+    </div>
+    <div class="mt-4 text-center">
+        <p>According to SEBI, only 5% of the Indian population has ventured into the stock market, compared to
+            significantly higher rates in countries like USA (55%), UK (33%), and China (13%).</p>
+    </div>
+</div>

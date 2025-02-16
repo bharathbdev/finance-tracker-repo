@@ -1,0 +1,65 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 80vh; overflow-y: auto;">
+        <h2 class="text-center mb-4">BUSINESS PROFILING</h2>
+        <form class="form-container">
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What is the name of your business entity?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.businessName" name="businessName"
+                    placeholder="Enter business name">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What is the legal structure of your business?</mat-label>
+                <mat-select [(ngModel)]="businessProfile.legalStructure" name="legalStructure">
+                    <mat-option value="sole-proprietorship">Sole Proprietorship</mat-option>
+                    <mat-option value="partnership">Partnership</mat-option>
+                    <mat-option value="corporation">Corporation</mat-option>
+                    <mat-option value="llc">LLC</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What is the primary nature of your business?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.businessNature" name="businessNature"
+                    placeholder="Enter business nature">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What are the key products or services your business offers?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.keyProducts" name="keyProducts"
+                    placeholder="Enter key products or services">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What is your average annual turnover?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.annualTurnover" name="annualTurnover"
+                    placeholder="Enter annual turnover">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>How long has your business been operational?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.operationalYears" name="operationalYears"
+                    placeholder="Enter years of operation">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Who are your primary customers?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.primaryCustomers" name="primaryCustomers"
+                    placeholder="Enter primary customers">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What are your main sources of revenue?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.revenueSources" name="revenueSources"
+                    placeholder="Enter revenue sources">
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>Do you have any existing credit facilities or loans?</mat-label>
+                <mat-select [(ngModel)]="businessProfile.creditFacilities" name="creditFacilities">
+                    <mat-option value="yes">Yes</mat-option>
+                    <mat-option value="no">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="form-field" appearance="fill">
+                <mat-label>What are your preferred banking and financial services?</mat-label>
+                <input matInput type="text" [(ngModel)]="businessProfile.bankingServices" name="bankingServices"
+                    placeholder="Enter preferred banking services">
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+        </form>
+    </mat-card>
+</div>
