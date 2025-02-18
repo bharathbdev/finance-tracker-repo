@@ -3,72 +3,50 @@
         <h2 class="text-center mb-4">RISK ANALYSIS</h2>
         <div class="form-container">
             <form>
-                <div class="form-group mb-4">
-                    <label>What is your investment experience?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.investmentExperience" name="investmentExperience"
+                <div class="form-group mb-4" *ngFor="let question of questions">
+                    <label>{{ question.text }}</label>
+                    <mat-radio-group [(ngModel)]="question.selectedOption" name="{{ question.name }}"
                         class="d-flex flex-column">
-                        <mat-radio-button value="beginner">Beginner</mat-radio-button>
-                        <mat-radio-button value="moderate">Moderate</mat-radio-button>
-                        <mat-radio-button value="expert">Expert</mat-radio-button>
+                        <mat-radio-button *ngFor="let option of question.options" [value]="option.value">
+                            {{ option.text }} ({{ option.score }})
+                        </mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <div class="form-group mb-4">
-                    <label>What is your preferred investment approach?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.investmentApproach" name="investmentApproach"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="safe-stable">Safe & Stable</mat-radio-button>
-                        <mat-radio-button value="balanced">Balanced</mat-radio-button>
-                        <mat-radio-button value="high-growth">High Growth</mat-radio-button>
-                    </mat-radio-group>
+                <button mat-raised-button color="primary" class="w-100 mb-4" (click)="calculateScore()">Submit</button>
+                </form>
                 </div>
-                <div class="form-group mb-4">
-                    <label>What is your investment time horizon?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.investmentHorizon" name="investmentHorizon"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="less-than-3-years">Less than 3 years</mat-radio-button>
-                        <mat-radio-button value="3-7-years">3-7 years</mat-radio-button>
-                        <mat-radio-button value="more-than-7-years">More than 7 years</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="form-group mb-4">
-                    <label>How do you react to market downturns?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.marketReactions" name="marketReactions"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="withdraw-immediately">Withdraw immediately</mat-radio-button>
-                        <mat-radio-button value="hold-monitor">Hold & Monitor</mat-radio-button>
-                        <mat-radio-button value="invest-more">Invest More</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="form-group mb-4">
-                    <label>How often do you need liquidity?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.liquidityNeeds" name="liquidityNeeds"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="frequently">Frequently</mat-radio-button>
-                        <mat-radio-button value="occasionally">Occasionally</mat-radio-button>
-                        <mat-radio-button value="rarely">Rarely</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="form-group mb-4">
-                    <label>Do you plan for retirement?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.retirementPlans" name="retirementPlans"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="no-plans">No plans yet</mat-radio-button>
-                        <mat-radio-button value="some-savings">Some savings</mat-radio-button>
-                        <mat-radio-button value="actively-planning">Actively planning</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="form-group mb-4">
-                    <label>Are you interested in tax-saving investments?</label>
-                    <mat-radio-group [(ngModel)]="riskAnalysis.taxSavingInterest" name="taxSavingInterest"
-                        class="d-flex flex-column">
-                        <mat-radio-button value="not-priority">Not a priority</mat-radio-button>
-                        <mat-radio-button value="some-interest">Some interest</mat-radio-button>
-                        <mat-radio-button value="strong-interest">Strong interest</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <button mat-raised-button color="primary" class="w-100 mb-4" (click)="navigateToNext()">Next</button>
-                <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
-            </form>
+        <div *ngIf="totalScoreUI !== null">
+            <h3>Total Score: {{ totalScoreUI }}</h3>
+            <h4>Risk Profile: {{ riskProfileUI }}</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Final Score</th>
+                        <th>Risk Profile</th>
+                        <th>Suitable Investment & Insurance Products</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>18-27</td>
+                        <td>Low Risk (Conservative)</td>
+                        <td>Fixed Deposits, PPF, Government Bonds, Term Insurance, Endowment Plans</td>
+                    </tr>
+                    <tr>
+                        <td>28-39</td>
+                        <td>Moderate Risk (Balanced)</td>
+                        <td>Debt & Hybrid Mutual Funds, NPS, ULIPs, Health & Life Insurance</td>
+                    </tr>
+                    <tr>
+                        <td>40-54</td>
+                        <td>High Risk (Aggressive)</td>
+                        <td>Equity, Direct Stocks, IPOs, Crypto, Term Insurance with Critical Illness Cover</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </mat-card>
+<!-- Navigation Buttons -->
+<button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+<button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
 </div>

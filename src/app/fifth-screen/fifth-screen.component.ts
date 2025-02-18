@@ -14,6 +14,7 @@ export class FifthScreenComponent {
     fdRd: '',
     gold: ''
   };
+  savings: any = 0
 
   constructor(private router: Router) { }
   async ngOnInit() {
@@ -23,6 +24,7 @@ export class FifthScreenComponent {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
         this.allocation = userInfo[0].allocation || this.allocation;
+        this.savings = userInfo[0].customerProfile.savings || this.savings;
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
