@@ -1,9 +1,14 @@
 <div class="container mt-5 d-flex flex-column align-items-center">
-    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
-        <h2 class="text-center mb-4">MSME Linking</h2>
-        <p class="text-center mb-4">If the customer has put a tick mark, MSME linking with customer:</p>
-        <p class="text-center mb-4">Eg: home loan customer connected to builders, furniture shops, hardware etc.</p>
-        <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
-        <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 100%;">
+        <h2 class="text-center mb-4">Selected Goals</h2>
+        <div class="form-container">
+            <form>
+                <div class="form-group mb-3" *ngFor="let goal of finalSelection">
+                    <p class="text-center mb-4">{{goal.name}} :    {{goal.label}}</p>
+                </div>
+                <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+                <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+            </form>
+        </div>
     </mat-card>
 </div>

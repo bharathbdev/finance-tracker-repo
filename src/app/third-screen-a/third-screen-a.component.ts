@@ -24,7 +24,14 @@ export class ThirdScreenAComponent implements OnInit {
     maritalStatus: '',
     dependents: '',
     savings: '',
-    financialGoal: '',
+    financialGoals: {
+      home: false,
+      vehicle: false,
+      education: false,
+      marriage: false,
+      travel: false,
+      business: false
+    },
     insurance: ''
   };
 

@@ -8,20 +8,8 @@ import { openDB } from 'idb';
   styleUrls: ['./seventh-screen.component.css']
 })
 export class SeventhScreenComponent implements OnInit {
-  productDisplay: any = {
-    homeLoan: false,
-    personalLoan: false,
-    loanAgainstProperty: false,
-    carLoan: false,
-    fastTag: false,
-    travelCards: false,
-    travelInsurance: false,
-    educationLoan: false,
-    lifeInsurance: false,
-    healthInsurance: false,
-    dematAccount: false,
-    startupCurrentAccount: false
-  };
+  productOfferings: any[] = [];
+  selectedProducts: any = {};
 
   constructor(private router: Router) { }
 
@@ -31,7 +19,10 @@ export class SeventhScreenComponent implements OnInit {
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
-        this.productDisplay = userInfo[0].productDisplay || this.productDisplay;
+        const financialGoals = userInfo[0].customerProfile.financialGoals;
+        this.productOfferings = Object.keys(financialGoals)
+          .filter(key => financialGoals[key])
+          .map(key => ({ name: key, label: this.getLabel(key) }));
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -42,13 +33,25 @@ export class SeventhScreenComponent implements OnInit {
     }
   }
 
+  getLabel(key: string): string {
+    const labels: { [key: string]: string } = {
+      home: 'Build/Buy a home',
+      vehicle: 'Travel insurance',
+      education: 'Education loan',
+      marriage: 'Planning to get Married',
+      travel: 'Planning to Travel',
+      business: 'Planning to start a Business (Start-up)'
+    };
+    return labels[key] || key;
+  }
+
   async navigateToNext() {
     const db = await openDB('FinanceTrackerDB', 1);
     const userEmail = localStorage.getItem('email');
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
-        userInfo[0].productDisplay = this.productDisplay;
+        userInfo[0].selectedProducts = this.selectedProducts;
         await db.put('userInfo', userInfo[0]);
         this.router.navigate(['/eighth-screen']);
       } else {

@@ -84,17 +84,23 @@
                 <input matInput type="text" [(ngModel)]="profile.savings" name="savings"
                     placeholder="Enter your monthly savings">
             </mat-form-field>
-            <mat-form-field class="form-field" appearance="fill">
-                <mat-label>YOUR NEXT FINANCIAL GOAL</mat-label>
-                <mat-select [(ngModel)]="profile.financialGoal" name="financialGoal">
-                    <mat-option value="home">Build/Buy a home</mat-option>
-                    <mat-option value="vehicle">Buy a vehicle</mat-option>
-                    <mat-option value="education">Fund for Children’s/Own education</mat-option>
-                    <mat-option value="marriage">Planning to get Married</mat-option>
-                    <mat-option value="travel">Planning to Travel</mat-option>
-                    <mat-option value="business">Planning to start a Business (Start-up)</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div class="form-group mb-4">
+                <label>YOUR NEXT FINANCIAL GOAL</label>
+                <div>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.home" name="financialGoals.home"
+                        value="home">Build/Buy a home</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.vehicle" name="financialGoals.vehicle"
+                        value="vehicle">Buy a vehicle</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.education" name="financialGoals.education"
+                        value="education">Fund for Children’s/Own education</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.marriage" name="financialGoals.marriage"
+                        value="marriage">Planning to get Married</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.travel" name="financialGoals.travel"
+                        value="travel">Planning to Travel</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.financialGoals.business" name="financialGoals.business"
+                        value="business">Planning to start a Business (Start-up)</mat-checkbox>
+                </div>
+            </div>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>INSURANCE</mat-label>
                 <mat-select [(ngModel)]="profile.insurance" name="insurance">

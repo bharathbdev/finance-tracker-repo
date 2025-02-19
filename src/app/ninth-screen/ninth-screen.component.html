@@ -16,10 +16,11 @@
                     <mat-radio-button value="new">New</mat-radio-button>
                 </mat-radio-group>
             </div>
-            <div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
-                <label>Deduction table:</label>
-                <p>Health insurance premium, PPF, etc.</p>
-            </div>
+    <div class="form-group mb-3">
+        <label>Tax Calculation Excel Link</label>
+        <br>
+        <a href="https://www.npmjs.com/package/crypto-js" target="_blank"> Open Tax Calculation Excel </a>
+    </div>
             <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
             <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
         </form>
