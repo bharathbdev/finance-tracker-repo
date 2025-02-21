@@ -21,14 +21,18 @@
                 <label>Tax Calculation Excel Links</label>
                 <br>
                 <div *ngIf="taxPlan.taxRegime === 'old'">
-                    <a href="assets/images/oldsalary.xlsx" target="_blank">Tax-old-salaried</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1Ym53ji4PFFU_ItYOmHiH0ntYhW4koYsn/edit?gid=780904103#gid=780904103"
+                        target="_blank">Tax-old-salaried</a>
                     <br>
-                    <a href="assets/images/oldself.xlsx" target="_blank">Tax-old-self employed</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1Oh3k-s4bVwyxU_lgYReVE8n2tKuUgcvr/edit?gid=1789252508#gid=1789252508"
+                        target="_blank">Tax-old-self employed</a>
                 </div>
                 <div *ngIf="taxPlan.taxRegime === 'new'">
-                    <a href="assets/images/newsalary.xlsx" target="_blank">Tax-new-salaried</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1rUX7NMs0vwLxTgseNhmrhLxFRN1-01o5/edit?gid=1653790381#gid=1653790381"
+                        target="_blank">Tax-new-salaried</a>
                     <br>
-                    <a href="assets/images/newself.xlsx" target="_blank">Tax-new-self employed</a>
+                    <a href="https://docs.google.com/spreadsheets/d/16dM5abAdV3HXrgrJzdmjReRkbHQ7glLz/edit?gid=1900816637#gid=1900816637"
+                        target="_blank">Tax-new-self employed</a>
                 </div>
             </div>
             <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
