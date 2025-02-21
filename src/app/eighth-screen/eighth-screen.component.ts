@@ -10,12 +10,12 @@ import { openDB } from 'idb';
 export class EighthScreenComponent implements OnInit {
   finalSelection: any[] = [];
   imagePaths: { [key: string]: string } = {
-    home: 'home.png',
-    vehicle: 'vehicle.png',
-    education: 'education.png',
-    marriage: 'marriage.png',
-    travel: 'travel.png',
-    business: 'business.png'
+    home: 'assets/images/home.png',
+    vehicle: 'assets/images/vehicle.png',
+    education: 'assets/images/education.png',
+    marriage: 'assets/images/marriage.png',
+    travel: 'assets/images/travel.png',
+    business: 'assets/images/business.png'
   };
 
   businessProfiles: { [key: string]: string } = {
