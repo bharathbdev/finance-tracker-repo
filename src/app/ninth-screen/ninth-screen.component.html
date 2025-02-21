@@ -21,14 +21,14 @@
                 <label>Tax Calculation Excel Links</label>
                 <br>
                 <div *ngIf="taxPlan.taxRegime === 'old'">
-                    <a href="/oldsalary.xlsx" target="_blank">Tax-old-salaried</a>
+                    <a href="assets/images/oldsalary.xlsx" target="_blank">Tax-old-salaried</a>
                     <br>
-                    <a href="/oldself.xlsx" target="_blank">Tax-old-self employed</a>
+                    <a href="assets/images/oldself.xlsx" target="_blank">Tax-old-self employed</a>
                 </div>
                 <div *ngIf="taxPlan.taxRegime === 'new'">
-                    <a href="/newsalary.xlsx" target="_blank">Tax-new-salaried</a>
+                    <a href="assets/images/newsalary.xlsx" target="_blank">Tax-new-salaried</a>
                     <br>
-                    <a href="/newself.xlsx" target="_blank">Tax-new-self employed</a>
+                    <a href="assets/images/newself.xlsx" target="_blank">Tax-new-self employed</a>
                 </div>
             </div>
             <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
