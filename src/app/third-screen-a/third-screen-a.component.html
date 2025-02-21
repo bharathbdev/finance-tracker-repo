@@ -42,13 +42,27 @@
             <div class="form-group mb-4">
                 <label>PRIORITY LANGUAGES</label>
                 <div>
-                    <mat-checkbox [(ngModel)]="profile.languages.hindi" name="languages.hindi"
-                        value="hindi">Hindi</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.hindi" name="languages.hindi" value="hindi">Hindi</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.english" name="languages.english"
                         value="english">English</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.marathi" name="languages.marathi"
                         value="marathi">Marathi</mat-checkbox>
-                    <!-- Add more languages as needed -->
+                    <mat-checkbox [(ngModel)]="profile.languages.tamil" name="languages.tamil" value="tamil">Tamil</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.telugu" name="languages.telugu" value="telugu">Telugu</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.kannada" name="languages.kannada"
+                        value="kannada">Kannada</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.malayalam" name="languages.malayalam"
+                        value="malayalam">Malayalam</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.gujarati" name="languages.gujarati"
+                        value="gujarati">Gujarati</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.bengali" name="languages.bengali"
+                        value="bengali">Bengali</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.punjabi" name="languages.punjabi"
+                        value="punjabi">Punjabi</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.odia" name="languages.odia" value="odia">Odia</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.assamese" name="languages.assamese"
+                        value="assamese">Assamese</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.urdu" name="languages.urdu" value="urdu">Urdu</mat-checkbox>
                 </div>
             </div>
             <mat-form-field class="form-field" appearance="fill">
@@ -60,7 +74,7 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="fill">
-                <mat-label>INCOME</mat-label>
+                <mat-label>Annual INCOME</mat-label>
                 <input matInput type="text" [(ngModel)]="profile.income" name="income" placeholder="Enter your income">
             </mat-form-field>
             <div class="form-group mb-4">
