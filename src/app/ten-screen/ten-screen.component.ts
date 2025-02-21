@@ -9,7 +9,7 @@ import { openDB } from 'idb';
 })
 export class TenScreenComponent implements OnInit {
   rating: number = 0;
-
+  feedback: string = '';
   constructor(private router: Router) { }
 
   async ngOnInit() {
@@ -19,6 +19,7 @@ export class TenScreenComponent implements OnInit {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
         this.rating = userInfo[0].rating || 0;
+        this.feedback = userInfo[0].feedback || '';
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -36,6 +37,7 @@ export class TenScreenComponent implements OnInit {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
         userInfo[0].rating = this.rating;
+        userInfo[0].feedback = this.feedback;
         await db.put('userInfo', userInfo[0]);
        // alert('Thank you for your rating!');
         this.router.navigate(['/finish']);

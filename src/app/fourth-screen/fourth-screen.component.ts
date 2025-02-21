@@ -204,8 +204,9 @@ export class FourthScreenComponent implements OnInit {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
         // Load previous answers if available
+        const allData = userInfo[0].allData || [];
         this.questions.forEach(question => {
-          const savedAnswer = userInfo[0].allData.find((answer: { name: string; }) => answer.name === question.name);
+          const savedAnswer = allData.find((answer: { name: string; }) => answer.name === question.name);
           if (savedAnswer) {
             question.selectedOption = savedAnswer.selectedOption;
           }
