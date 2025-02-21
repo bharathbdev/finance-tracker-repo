@@ -3,14 +3,24 @@
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    gap: 8px;
+    /* Adds spacing between stars */
 }
 
 mat-icon {
-    font-size: 40px;
+    font-size: 36px;
     cursor: pointer;
-    margin: 0 5px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    /* Ensure full height */
+    width: 36px;
+    /* Ensure proper width */
+    line-height: 36px;
 }
 
-.selected {
+mat-icon.selected {
     color: gold;
 }
