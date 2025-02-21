@@ -44,6 +44,13 @@ export class ThirdScreenAComponent implements OnInit {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
         this.profile = userInfo[0].customerProfile || this.profile;
+        if (userInfo[0].selectedIndividual === "Existing User") {
+          this.profile.age = userInfo[0].selectedExistingIndividual.age;
+          this.profile.name = userInfo[0].selectedExistingIndividual.name;
+          this.profile.gender = userInfo[0].selectedExistingIndividual.gender;
+          this.profile.location = userInfo[0].selectedExistingIndividual.location;
+          this.profile.pincode = userInfo[0].selectedExistingIndividual.pincode;
+        }
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);

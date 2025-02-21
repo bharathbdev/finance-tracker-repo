@@ -14,9 +14,13 @@ export class FifthScreenComponent {
     fdRd: '',
     gold: ''
   };
-  savings: any = 0
+  savings: any = 0;
+
+  languages: string[] = ['english', 'marathi', 'odia', 'telugu', 'bengali', 'malayalam', 'hindi', 'tamil', 'kannada'];
+  selectedLanguage: string = 'english';
 
   constructor(private router: Router) { }
+
   async ngOnInit() {
     const db = await openDB('FinanceTrackerDB', 1);
     const userEmail = localStorage.getItem('email');
@@ -34,6 +38,7 @@ export class FifthScreenComponent {
       this.router.navigate(['/first-screen']);
     }
   }
+
   async navigateToNext() {
     const db = await openDB('FinanceTrackerDB', 1);
     const userEmail = localStorage.getItem('email');
@@ -55,5 +60,9 @@ export class FifthScreenComponent {
 
   navigateToBack() {
     this.router.navigate(['/fourth-screen']);
+  }
+
+  onLanguageChange(event: any): void {
+    this.selectedLanguage = event.value;
   }
 }

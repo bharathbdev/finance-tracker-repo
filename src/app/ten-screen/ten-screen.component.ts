@@ -49,7 +49,26 @@ export class TenScreenComponent implements OnInit {
     }
   }
 
-  navigateToBack() {
-    this.router.navigate(['/ninth-screen']);
+  async navigateToBack() {
+    const db = await openDB('FinanceTrackerDB', 1);
+    const userEmail = localStorage.getItem('email');
+    if (userEmail) {
+      const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
+      if (userInfo.length > 0) {
+        if (userInfo[0].selectedIndividual) {
+          this.router.navigate(['/ninth-screen']);
+        } else if (userInfo[0].selectedBusiness) {
+          this.router.navigate(['/third-screen-b']);
+        } else {
+          alert('Please select either an individual or a business.');
+        }
+      } else {
+        alert('User not found.');
+        this.router.navigate(['/first-screen']);
+      }
+    } else {
+      alert('User email not found.');
+      this.router.navigate(['/first-screen']);
+    }
   }
 }

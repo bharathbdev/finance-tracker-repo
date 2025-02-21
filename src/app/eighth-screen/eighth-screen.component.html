@@ -1,14 +1,11 @@
 <div class="container mt-5 d-flex flex-column align-items-center">
-    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 100%;">
-        <h2 class="text-center mb-4">Selected Goals</h2>
-        <div class="form-container">
-            <form>
-                <div class="form-group mb-3" *ngFor="let goal of finalSelection">
-                    <p class="text-center mb-4">{{goal.name}} :    {{goal.label}}</p>
-                </div>
-                <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
-                <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
-            </form>
+    <mat-card class="p-4 scrollable-card" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">Your Selected Goals</h2>
+        <div *ngFor="let item of finalSelection" class="goal-item mb-4">
+            <img [src]="item.imagePath" alt="{{ item.name }}" class="goal-image">
+            <div [innerHTML]="item.profile" class="goal-profile"></div>
         </div>
+        <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+        <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
     </mat-card>
 </div>

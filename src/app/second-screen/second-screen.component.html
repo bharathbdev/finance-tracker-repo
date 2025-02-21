@@ -1,22 +1,38 @@
 <div class="container mt-5 d-flex flex-column align-items-center">
-    <div class="card p-4" style="width: 100%; max-width: 400px;">
-        <h2 class="text-center mb-4">User Role</h2>
-        <form>
+    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">Select User Type</h2>
+        <form class="form-container">
             <div class="form-group mb-3">
-                <label for="individualsDropdown">Individuals:</label>
+                <label for="individualsDropdown">Individuals</label>
                 <select class="form-control" id="individualsDropdown" [(ngModel)]="selectedIndividual"
                     name="individualsDropdown" (change)="onIndividualChange()">
                     <option *ngFor="let option of individualsOptions" [value]="option">{{ option }}</option>
                 </select>
             </div>
+            <div class="form-group mb-3" *ngIf="selectedIndividual === 'Existing User'">
+                <label for="existingIndividualDropdown">Select Existing User</label>
+                <select class="form-control" id="existingIndividualDropdown" [(ngModel)]="selectedExistingIndividual"
+                    name="existingIndividualDropdown" (ngModelChange)="onIndividualSelectedChange($event)">
+                    <option *ngFor="let user of existingIndividuals" [ngValue]="user">{{ user.name }}</option>
+                </select>
+            </div>
             <div class="form-group mb-3">
-                <label for="businessDropdown">Business:</label>
+                <label for="businessDropdown">Business</label>
                 <select class="form-control" id="businessDropdown" [(ngModel)]="selectedBusiness"
                     name="businessDropdown" (change)="onBusinessChange()">
                     <option *ngFor="let option of businessOptions" [value]="option">{{ option }}</option>
                 </select>
             </div>
-            <button type="button" class="btn btn-primary w-100" (click)="navigateToNext()">Save</button>
+            <div class="form-group mb-3" *ngIf="selectedBusiness === 'Existing User'">
+                <label for="existingBusinessDropdown">Select Existing Business</label>
+                <select class="form-control" id="existingBusinessDropdown" [(ngModel)]="selectedExistingBusiness"
+                    name="existingBusinessDropdown" (ngModelChange)="onBusinessSelectedChange($event)">
+                    <option *ngFor="let business of existingBusinesses" [ngValue]="business">{{ business.name }}
+                    </option>
+                </select>
+            </div>
+            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
         </form>
-    </div>
+    </mat-card>
 </div>

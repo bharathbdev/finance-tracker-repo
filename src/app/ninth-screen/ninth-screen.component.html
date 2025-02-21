@@ -18,12 +18,18 @@
                 </mat-radio-group>
             </div>
             <div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
-                <label>Tax Calculation Excel Link</label>
+                <label>Tax Calculation Excel Links</label>
                 <br>
-                <a *ngIf="taxPlan.taxRegime === 'old'" href="https://example.com/old-regime-excel" target="_blank">Open
-                    Old Regime Tax Calculation Excel</a>
-                <a *ngIf="taxPlan.taxRegime === 'new'" href="https://example.com/new-regime-excel" target="_blank">Open
-                    New Regime Tax Calculation Excel</a>
+                <div *ngIf="taxPlan.taxRegime === 'old'">
+                    <a href="/oldsalary.xlsx" target="_blank">Tax-old-salaried</a>
+                    <br>
+                    <a href="/oldself.xlsx" target="_blank">Tax-old-self employed</a>
+                </div>
+                <div *ngIf="taxPlan.taxRegime === 'new'">
+                    <a href="/newsalary.xlsx" target="_blank">Tax-new-salaried</a>
+                    <br>
+                    <a href="/newself.xlsx" target="_blank">Tax-new-self employed</a>
+                </div>
             </div>
             <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
             <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>

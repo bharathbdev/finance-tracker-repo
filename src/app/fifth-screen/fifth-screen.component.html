@@ -28,6 +28,53 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="audio-controls mt-4">
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Select Audio Language</mat-label>
+                    <mat-select [(ngModel)]="selectedLanguage" name="selectedLanguage"
+                        (selectionChange)="onLanguageChange($event)">
+                        <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br><br>
+                <audio *ngIf="selectedLanguage === 'english'" controls class="w-100">
+                    <source src="english.mp4" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'marathi'" controls class="w-100">
+                    <source src="marathi.ogg" type="audio/ogg">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'odia'" controls class="w-100">
+                    <source src="odia.aac" type="audio/aac">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'telugu'" controls class="w-100">
+                    <source src="telugu.aac" type="audio/aac">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'bengali'" controls class="w-100">
+                    <source src="bengali.mp4" type="audio/mp4">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'malayalam'" controls class="w-100">
+                    <source src="malayalam.aac" type="audio/aac">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'hindi'" controls class="w-100">
+                    <source src="hindi.mpeg" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'tamil'" controls class="w-100">
+                    <source src="tamil.aac" type="audio/aac">
+                    Your browser does not support the audio element.
+                </audio>
+                <audio *ngIf="selectedLanguage === 'kannada'" controls class="w-100">
+                    <source src="kannada.mpeg" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <br>
             <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
             <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
         </form>

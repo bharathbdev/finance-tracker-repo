@@ -9,6 +9,95 @@ import { openDB } from 'idb';
 })
 export class EighthScreenComponent implements OnInit {
   finalSelection: any[] = [];
+  imagePaths: { [key: string]: string } = {
+    home: 'home.png',
+    vehicle: 'vehicle.png',
+    education: 'education.png',
+    marriage: 'marriage.png',
+    travel: 'travel.png',
+    business: 'business.png'
+  };
+
+  businessProfiles: { [key: string]: string } = {
+    home: `
+      <strong>Business Name:</strong> Stellar Infra Developers Pvt. Ltd.<br>
+      <strong>Legal Structure:</strong> Private Limited Company<br>
+      <strong>Primary Nature of Business:</strong> Real Estate Development & Construction<br>
+      <strong>Key Products/Services:</strong><br>
+      • Residential Apartments & Villas<br>
+      • Commercial Office Spaces<br>
+      • Retail Complexes & Malls<br>
+      • Luxury Townships<br>
+      • Land Development & Plotting<br>
+      <strong>Average Annual Turnover:</strong> ₹250 Crores
+    `,
+    vehicle: `
+      <strong>Business Name:</strong> Velocity Motors Pvt. Ltd.<br>
+      <strong>Legal Structure:</strong> Private Limited Company<br>
+      <strong>Primary Nature of Business:</strong> Automobile dealership, specializing in the sale of new and used cars<br>
+      <strong>Key Products & Services:</strong><br>
+      • New and pre-owned car sales<br>
+      • Vehicle financing assistance<br>
+      • Car insurance facilitation<br>
+      • Trade-in and exchange programs<br>
+      • After-sales services (maintenance & servicing)<br>
+      <strong>Average Annual Turnover:</strong> ₹25-30 crore<br>
+      <strong>Years in Operation:</strong> 7 years
+    `,
+    travel: `
+      <strong>Business Name:</strong> WanderLux Travels Pvt. Ltd.<br>
+      <strong>Legal Structure:</strong> Private Limited Company<br>
+      <strong>Primary Nature of Business:</strong> Travel and Tourism Services<br>
+      <strong>Key Products/Services:</strong><br>
+      • Domestic & International Tour Packages<br>
+      • Flight, Hotel & Cruise Bookings<br>
+      • Corporate Travel Management<br>
+      • Luxury and Customized Travel Experiences<br>
+      • Visa and Travel Insurance Services<br>
+      • Adventure & Pilgrimage Tours<br>
+      <strong>Average Annual Turnover:</strong> ₹10-12 crore<br>
+      <strong>Operational Since:</strong> 2017 (7 years)
+    `,
+    education: `
+      <strong>Business Name:</strong> Zenith Institute of Advanced Studies (ZIAS)<br>
+      <strong>Legal Structure:</strong> Private Limited Company (Zenith Educational Pvt. Ltd.)<br>
+      <strong>Nature of Business:</strong> Higher Education and Skill Development<br>
+      <strong>Key Products/Services:</strong><br>
+      • Undergraduate and Postgraduate Degree Programs<br>
+      • Professional Certification Courses<br>
+      • Corporate Training Programs<br>
+      • Online Learning Modules<br>
+      • Research and Development Initiatives<br>
+      <strong>Average Annual Turnover:</strong> ₹50 Crore<br>
+      <strong>Operational History:</strong> 12 years (Established in 2012)
+    `,
+    marriage: `
+      <strong>Business Name:</strong> Marriage Planning Services Pvt. Ltd.<br>
+      <strong>Legal Structure:</strong> Private Limited Company<br>
+      <strong>Primary Nature of Business:</strong> Event Planning and Management<br>
+      <strong>Key Products/Services:</strong><br>
+      • Wedding Planning<br>
+      • Venue Booking<br>
+      • Catering Services<br>
+      • Decoration Services<br>
+      • Photography and Videography<br>
+      <strong>Average Annual Turnover:</strong> ₹15 Crore<br>
+      <strong>Years in Operation:</strong> 5 years
+    `,
+    business: `
+      <strong>Business Name:</strong> Startup Consultants Pvt. Ltd.<br>
+      <strong>Legal Structure:</strong> Private Limited Company<br>
+      <strong>Primary Nature of Business:</strong> Business Consulting and Advisory<br>
+      <strong>Key Products/Services:</strong><br>
+      • Business Plan Development<br>
+      • Financial Advisory<br>
+      • Market Research<br>
+      • Legal and Compliance Services<br>
+      • Funding and Investment Assistance<br>
+      <strong>Average Annual Turnover:</strong> ₹20 Crore<br>
+      <strong>Years in Operation:</strong> 8 years
+    `
+  };
 
   constructor(private router: Router) { }
 
@@ -21,7 +110,7 @@ export class EighthScreenComponent implements OnInit {
         const selectedGoals = userInfo[0].selectedProducts;
         this.finalSelection = Object.keys(selectedGoals)
           .filter(key => selectedGoals[key])
-          .map(key => ({ name: key, label: this.getLabel(key) }));
+          .map(key => ({ name: key, label: this.getLabel(key), imagePath: this.imagePaths[key], profile: this.businessProfiles[key] }));
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);

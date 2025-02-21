@@ -12,11 +12,12 @@ export class NinthScreenComponent implements OnInit {
     taxPlanning: '',
     taxRegime: ''
   };
-
+  baseUrl: string = window.location.origin;
   constructor(private router: Router) { }
 
   async ngOnInit() {
     const db = await openDB('FinanceTrackerDB', 1);
+    console.log("##")
     const userEmail = localStorage.getItem('email');
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
