@@ -7,7 +7,38 @@ html {
     overflow: hidden;
     /* Prevent scroll bar on the body */
 }
+.header-logo {
+    height: 62px;
+    /* Adjust the height as needed to fit the header */
+    margin-right: 20px;
+    /* Adjust the spacing as needed */
+    vertical-align: middle;
+    /* Ensure the images are vertically centered */
+}
 
+.spacer {
+    flex: 1 1 auto;
+}
+
+.home-link,
+.export-link {
+    color: white !important;
+    ;
+    /* Set the text color to white */
+    text-decoration: none;
+    /* Remove underline from links */
+}
+
+.home-link:hover,
+.export-link:hover {
+    color: #ffcc00;
+    /* Change color on hover */
+}
+
+.footer-text {
+    text-align: center;
+    width: 100%;
+}
 .header,
 .footer {
     position: fixed;
@@ -16,7 +47,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #3f51b5; /* Primary color for header and footer */
+    background-color: #16171f;
+        /* Primary color for header and footer */
     color: white; /* Text color for header and footer */
 }
 
