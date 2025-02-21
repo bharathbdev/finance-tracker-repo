@@ -1,0 +1,18 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">Thank You!</h2>
+        <p class="text-center mb-4">Thanks for your selections made throughout the process.</p>
+        <div class="form-group mb-4">
+            <label for="rating">Please rate your experience:</label>
+            <div class="d-flex justify-content-center rating-container">
+                <mat-icon *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rating = star"
+                    [ngClass]="{'selected': star <= rating}">
+                    {{ star <= rating ? 'star' : 'star_border' }} </mat-icon>
+            </div>
+        </div>
+        <br>
+        <br>
+        <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+        <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+    </mat-card>
+</div>

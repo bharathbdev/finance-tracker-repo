@@ -3,15 +3,12 @@ import { Router } from '@angular/router';
 import { openDB } from 'idb';
 
 @Component({
-  selector: 'app-ninth-screen',
-  templateUrl: './ninth-screen.component.html',
-  styleUrls: ['./ninth-screen.component.css']
+  selector: 'app-ten-screen',
+  templateUrl: './ten-screen.component.html',
+  styleUrls: ['./ten-screen.component.css']
 })
-export class NinthScreenComponent implements OnInit {
-  taxPlan: any = {
-    taxPlanning: '',
-    taxRegime: ''
-  };
+export class TenScreenComponent implements OnInit {
+  rating: number = 0;
 
   constructor(private router: Router) { }
 
@@ -21,8 +18,7 @@ export class NinthScreenComponent implements OnInit {
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
-        this.taxPlan.taxPlanning = userInfo[0].taxPlan?.taxPlanning || '';
-        this.taxPlan.taxRegime = userInfo[0].taxPlan?.taxRegime || '';
+        this.rating = userInfo[0].rating || 0;
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -39,9 +35,10 @@ export class NinthScreenComponent implements OnInit {
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
-        userInfo[0].taxPlan = this.taxPlan;
+        userInfo[0].rating = this.rating;
         await db.put('userInfo', userInfo[0]);
-        this.router.navigate(['/tenth-screen']);
+       // alert('Thank you for your rating!');
+        this.router.navigate(['/finish']);
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -53,16 +50,6 @@ export class NinthScreenComponent implements OnInit {
   }
 
   navigateToBack() {
-    this.router.navigate(['/eighth-screen']);
-  }
-
-  onTaxPlanningChange(event: any) {
-    if (event.value === 'no') {
-      this.navigateToNext();
-    }
-  }
-
-  onTaxRegimeChange(event: any) {
-    // Additional logic can be added here if needed
+    this.router.navigate(['/ninth-screen']);
   }
 }

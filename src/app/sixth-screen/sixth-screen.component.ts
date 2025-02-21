@@ -17,6 +17,7 @@ export interface InvestmentData {
     [risk in RiskTolerance]: InvestmentAllocation;
   };
 }
+
 @Component({
   selector: 'app-sixth-screen',
   templateUrl: './sixth-screen.component.html',
@@ -28,8 +29,7 @@ export class SixthScreenComponent implements OnInit {
   customerName = 'Customer';
   riskLevel = 'Medium';
   suggestedOption = 'Balanced';
-  suggestionText = '';
-
+  showSuggestedAllocation = false;
   displayedColumns: string[] = ['riskTolerance', 'equityFunds', 'debtFunds', 'fdsRds', 'goldFunds'];
   dataSource = [
     {
@@ -65,6 +65,23 @@ export class SixthScreenComponent implements OnInit {
     { name: 'Gold Funds', value: 0 }
   ];
 
+  suggestedDataSource = [
+    {
+      riskTolerance: '',
+      equityFunds: 0,
+      debtFunds: 0,
+      fdsRds: 0,
+      goldFunds: 0
+    }
+  ];
+
+  suggestedChartData = [
+    { name: 'Equity Funds', value: 0 },
+    { name: 'Debt Funds', value: 0 },
+    { name: 'FDs/RDs', value: 0 },
+    { name: 'Gold Funds', value: 0 }
+  ];
+
   colorScheme: Color = {
     name: 'custom',
     selectable: true,
@@ -80,19 +97,17 @@ export class SixthScreenComponent implements OnInit {
     if (userEmail) {
       const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
       if (userInfo.length > 0) {
-        this.customerName = userInfo[0].customerName || userInfo[0].email || this.customerName;
+        this.customerName = userInfo[0].customerProfile.name || userInfo[0].email || this.customerName;
 
-        this.suggestedOption = userInfo[0].suggestedOption || this.suggestedOption;
-        this.suggestionText = userInfo[0].suggestionText || this.suggestionText;
         this.chartData = [
           { name: 'Equity Funds', value: userInfo[0].allocation.equityMf },
           { name: 'Debt Funds', value: userInfo[0].allocation.debt },
           { name: 'FDs/RDs', value: userInfo[0].allocation.fdRd },
           { name: 'Gold Funds', value: userInfo[0].allocation.gold }
         ];
-        this.chartData = this.chartData || userInfo[0].chartData
+        this.chartData = this.chartData || userInfo[0].chartData;
         this.selectedAgeGroup = userInfo[0].customerProfile.age || '18-23';
-        this.riskLevel = this.calculateRiskLevel(this.chartData, this.selectedAgeGroup) || userInfo[0].riskLevel || this.riskLevel;
+        this.riskLevel = this.getRiskLevelForCustomer(this.chartData[0].value, this.selectedAgeGroup) || userInfo[0].riskLevel || this.riskLevel;
         this.dataSource = [
           {
             riskTolerance: this.riskLevel,
@@ -102,8 +117,7 @@ export class SixthScreenComponent implements OnInit {
             goldFunds: userInfo[0].allocation.gold || 0
           }
         ];
-        this.dataSource = this.dataSource || userInfo[0].dataSource
-
+        this.dataSource = this.dataSource || userInfo[0].dataSource;
 
         let riskByApp = this.getRiskLevel(userInfo[0].customerProfile.age, userInfo[0].customerProfile.dependents, userInfo[0].customerProfile.maritalStatus, userInfo[0].customerProfile.insurance) as RiskTolerance;
         this.dataSource[0].riskTolerance = riskByApp;
@@ -123,10 +137,9 @@ export class SixthScreenComponent implements OnInit {
           { name: 'Equity Funds', value: 'equityFunds' in graph ? graph.equityFunds : 0 },
           { name: 'Debt Funds', value: 'debtFunds' in graph ? graph.debtFunds : 0 },
           { name: 'FDs/RDs', value: 'fdsRds' in graph ? graph.fdsRds : 0 },
-          { name: 'FDs/RDs', value: 'goldFunds' in graph ? graph.goldFunds : 0 },
           { name: 'Gold Funds', value: 'goldFunds' in graph ? graph.goldFunds : 0 }
         ];
-
+        this.suggestedOption = riskByApp || userInfo[0].suggestedOption || this.suggestedOption;
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -137,6 +150,67 @@ export class SixthScreenComponent implements OnInit {
     }
   }
 
+  getRiskLevelForCustomer(equity: number, ageGroup: string): string {
+    if (ageGroup === '18-23') {
+      if (equity > 65) {
+        return 'High Risk';
+      } else if (equity >= 50 && equity <= 65) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '24-29') {
+      if (equity > 60) {
+        return 'High Risk';
+      } else if (equity >= 40 && equity <= 60) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '30-35') {
+      if (equity > 65) {
+        return 'High Risk';
+      } else if (equity >= 45 && equity <= 65) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '36-45') {
+      if (equity > 60) {
+        return 'High Risk';
+      } else if (equity >= 40 && equity <= 60) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '46-53') {
+      if (equity > 55) {
+        return 'High Risk';
+      } else if (equity >= 35 && equity <= 55) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '54-60') {
+      if (equity > 50) {
+        return 'High Risk';
+      } else if (equity >= 30 && equity <= 50) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else if (ageGroup === '60+') {
+      if (equity > 45) {
+        return 'High Risk';
+      } else if (equity >= 25 && equity <= 45) {
+        return 'Medium Risk';
+      } else {
+        return 'Low Risk';
+      }
+    } else {
+      return 'Invalid age group';
+    }
+  }
 
   getInvestmentAllocation(ageGroup: string, riskTolerance: RiskTolerance): InvestmentAllocation | { error: string } {
     const investmentData: InvestmentData = {
@@ -184,11 +258,9 @@ export class SixthScreenComponent implements OnInit {
     }
   }
 
-
-
   onAgeGroupChange(event: any): void {
     console.log('Selected Age Group:', this.selectedAgeGroup);
-    this.riskLevel = this.calculateRiskLevel(this.chartData, this.selectedAgeGroup);
+    this.riskLevel = this.getRiskLevelForCustomer(this.chartData[0].value, this.selectedAgeGroup);
     this.dataSource[0].riskTolerance = this.riskLevel;
     // Add your logic here to handle the change in age group
   }
@@ -200,80 +272,8 @@ export class SixthScreenComponent implements OnInit {
       { name: 'FDs/RDs', value: this.dataSource[0].fdsRds },
       { name: 'Gold Funds', value: this.dataSource[0].goldFunds }
     ];
-    this.riskLevel = this.calculateRiskLevel(this.chartData, this.selectedAgeGroup);
+    this.riskLevel = this.getRiskLevelForCustomer(this.chartData[0].value, this.selectedAgeGroup);
     this.dataSource[0].riskTolerance = this.riskLevel;
-  }
-
-  calculateRiskLevel(chartData: any, ageGroup: any) {
-    let equityFunds = 0;
-    let debtFunds = 0;
-    let fdsRds = 0;
-    let goldFunds = 0;
-    chartData.forEach((data: any) => {
-      if (data.name === 'Equity Funds') {
-        equityFunds = data.value;
-      } else if (data.name === 'Debt Funds') {
-        debtFunds = data.value;
-      } else if (data.name === 'FDs/RDs') {
-        fdsRds = data.value;
-      } else if (data.name === 'Gold Funds') {
-        goldFunds = data.value;
-      }
-    });
-    if (ageGroup === '18-23') {
-      if (equityFunds > 40) {
-        return "High"
-      } else if (equityFunds > 30) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-    } else if (ageGroup === '24-29') {
-      if (equityFunds > 45) {
-        return "High"
-      } else if (equityFunds > 35) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-    } else if (ageGroup === '30-35') {
-      if (equityFunds > 50) {
-        return "High"
-      } else if (equityFunds > 40) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-    } else if (ageGroup === '36-45') {
-      if (equityFunds > 55) {
-        return "High"
-      } else if (equityFunds > 45) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-    } else if (ageGroup === '46-53') {
-      if (equityFunds > 60) {
-        return "High"
-      } else if (equityFunds > 50) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-    }
-    else if (ageGroup === '54-60') {
-      if (equityFunds > 65) {
-        return "High"
-      } else if (equityFunds > 55) {
-        return "Medium"
-      } else {
-        return "Low"
-      }
-
-    }
-    else {
-      return "High"
-    }
   }
 
   getRiskLevel(
@@ -342,10 +342,34 @@ export class SixthScreenComponent implements OnInit {
     }
   }
 
+  onRiskButtonClick(riskTolerance: RiskTolerance) {
+    const allocation = this.getInvestmentAllocation(this.selectedAgeGroup, riskTolerance);
+    if ('error' in allocation) {
+      alert(allocation.error);
+      return;
+    }
 
+    this.suggestedDataSource = [
+      {
+        riskTolerance: riskTolerance,
+        equityFunds: allocation.equityFunds,
+        debtFunds: allocation.debtFunds,
+        fdsRds: allocation.fdsRds,
+        goldFunds: allocation.goldFunds
+      }
+    ];
+
+    this.suggestedChartData = [
+      { name: 'Equity Funds', value: allocation.equityFunds },
+      { name: 'Debt Funds', value: allocation.debtFunds },
+      { name: 'FDs/RDs', value: allocation.fdsRds },
+      { name: 'Gold Funds', value: allocation.goldFunds }
+    ];
+
+    this.showSuggestedAllocation = true;
+  }
 
   async navigateToNext() {
-
     const db = await openDB('FinanceTrackerDB', 1);
     const userEmail = localStorage.getItem('email');
     if (userEmail) {
@@ -354,9 +378,10 @@ export class SixthScreenComponent implements OnInit {
         userInfo[0].customerName = this.customerName;
         userInfo[0].riskLevel = this.riskLevel;
         userInfo[0].suggestedOption = this.suggestedOption;
-        userInfo[0].suggestionText = this.suggestionText;
         userInfo[0].dataSource = this.dataSource;
         userInfo[0].chartData = this.chartData;
+        userInfo[0].suggestedDataSource = this.suggestedDataSource;
+        userInfo[0].suggestedChartData = this.suggestedChartData;
         await db.put('userInfo', userInfo[0]);
         this.router.navigate(['/seventh-screen']);
       } else {
@@ -372,9 +397,4 @@ export class SixthScreenComponent implements OnInit {
   navigateToBack() {
     this.router.navigate(['/fifth-screen']);
   }
-
-
-
-
-
 }

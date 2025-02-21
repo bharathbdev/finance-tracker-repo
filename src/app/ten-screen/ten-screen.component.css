@@ -1,0 +1,16 @@
+.rating-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+mat-icon {
+    font-size: 40px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.selected {
+    color: gold;
+}

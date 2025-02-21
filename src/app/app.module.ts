@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { TenScreenComponent } from './ten-screen/ten-screen.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     EighthScreenComponent,
     NinthScreenComponent,
     FinishComponent,
-    HomeComponent
+    HomeComponent,
+    TenScreenComponent
   ],
   imports: [
     BrowserModule,

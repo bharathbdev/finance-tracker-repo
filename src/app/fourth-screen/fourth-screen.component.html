@@ -12,10 +12,10 @@
                         </mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <button mat-raised-button color="primary" class="w-100 mb-4" (click)="calculateScore()">Submit</button>
-                </form>
-                </div>
-        <div *ngIf="totalScoreUI !== null">
+                <button mat-raised-button color="primary" class="w-100 mb-4" (click)="calculateScore()">Check Your Risk Tolerance</button>
+            </form>
+            </div>
+        <div *ngIf="totalScoreUI > 0">
             <h3>Total Score: {{ totalScoreUI }}</h3>
             <h4>Risk Profile: {{ riskProfileUI }}</h4>
             <table class="table table-bordered">
@@ -27,17 +27,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr *ngIf="riskProfileUI === 'Low Risk (Conservative)'">
                         <td>18-27</td>
                         <td>Low Risk (Conservative)</td>
                         <td>Fixed Deposits, PPF, Government Bonds, Term Insurance, Endowment Plans</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="riskProfileUI === 'Moderate Risk (Balanced)'">
                         <td>28-39</td>
                         <td>Moderate Risk (Balanced)</td>
                         <td>Debt & Hybrid Mutual Funds, NPS, ULIPs, Health & Life Insurance</td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="riskProfileUI === 'High Risk (Aggressive)'">
                         <td>40-54</td>
                         <td>High Risk (Aggressive)</td>
                         <td>Equity, Direct Stocks, IPOs, Crypto, Term Insurance with Critical Illness Cover</td>
@@ -46,7 +46,7 @@
             </table>
         </div>
     </mat-card>
-<!-- Navigation Buttons -->
-<button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
-<button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+    <!-- Navigation Buttons -->
+    <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+    <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
 </div>

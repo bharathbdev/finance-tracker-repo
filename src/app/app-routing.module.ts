@@ -12,6 +12,7 @@ import { SeventhScreenComponent } from './seventh-screen/seventh-screen.componen
 import { EighthScreenComponent } from './eighth-screen/eighth-screen.component';
 import { NinthScreenComponent } from './ninth-screen/ninth-screen.component';
 import { FinishComponent } from './finish/finish.component';
+import { TenScreenComponent } from './ten-screen/ten-screen.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'seventh-screen', component: SeventhScreenComponent },
   { path: 'eighth-screen', component: EighthScreenComponent },
   { path: 'ninth-screen', component: NinthScreenComponent },
+  { path: 'tenth-screen', component: TenScreenComponent },
   { path: 'finish', component: FinishComponent }
 ];
 

@@ -61,14 +61,12 @@
         <p>Dear {{ customerName }},</p>
         <p>According to your choice of allocation you are taking {{ riskLevel }} risk.</p>
         <p>According to your profile you are suggested to go for {{ suggestedOption }} option.</p>
-        <p>If you still wish to go with {{ riskLevel }}, here is our suggestion:</p>
-        <textarea matInput [(ngModel)]="suggestionText" name="suggestionText"
-            placeholder="Enter your suggestion"></textarea>
+
     </div>
 
 <!-- My Prediction Section -->
 <div class="container mt-5">
-    <h2>My Prediction</h2>
+    <h2>Advisor</h2>
 
     <!-- Prediction Table -->
     <table mat-table [dataSource]="predictionDataSource" class="mat-elevation-z8">
@@ -110,6 +108,58 @@
     </div>
 </div>
 
+<br>
+
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 100%;">
+        <div class="form-group mb-4">
+            <p>If you still wish to go with any below risk here is our suggestion:</p>
+            <div class="d-flex justify-content-center">
+                <button mat-raised-button color="primary" class="mx-2" (click)="onRiskButtonClick('Low Risk')">Low
+                    Risk</button>
+                <button mat-raised-button color="primary" class="mx-2" (click)="onRiskButtonClick('Medium Risk')">Medium
+                    Risk</button>
+                <button mat-raised-button color="primary" class="mx-2" (click)="onRiskButtonClick('High Risk')">High
+                    Risk</button>
+            </div>
+        </div>
+        <div class="form-group mb-4" *ngIf="showSuggestedAllocation">
+            <h3 class="text-center mb-4">Suggested Investment Allocation</h3>
+            <table mat-table [dataSource]="suggestedDataSource" class="mat-elevation-z8">
+                <ng-container matColumnDef="riskTolerance">
+                    <th mat-header-cell *matHeaderCellDef> Risk Tolerance </th>
+                    <td mat-cell *matCellDef="let element"> {{element.riskTolerance}} </td>
+                </ng-container>
+                <ng-container matColumnDef="equityFunds">
+                    <th mat-header-cell *matHeaderCellDef> Equity Funds </th>
+                    <td mat-cell *matCellDef="let element"> {{element.equityFunds}}% </td>
+                </ng-container>
+                <ng-container matColumnDef="debtFunds">
+                    <th mat-header-cell *matHeaderCellDef> Debt Funds </th>
+                    <td mat-cell *matCellDef="let element"> {{element.debtFunds}}% </td>
+                </ng-container>
+                <ng-container matColumnDef="fdsRds">
+                    <th mat-header-cell *matHeaderCellDef> FDs/RDs </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fdsRds}}% </td>
+                </ng-container>
+                <ng-container matColumnDef="goldFunds">
+                    <th mat-header-cell *matHeaderCellDef> Gold Funds </th>
+                    <td mat-cell *matCellDef="let element"> {{element.goldFunds}}% </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <div class="form-group mb-4" *ngIf="showSuggestedAllocation">
+            <ngx-charts-bar-vertical [view]="[700, 400]" [scheme]="colorScheme" [results]="suggestedChartData"
+                [gradient]="false" [xAxis]="true" [yAxis]="true" [legend]="true" [showXAxisLabel]="true"
+                [showYAxisLabel]="true" [xAxisLabel]="'Funds'" [yAxisLabel]="'Percentage'">
+            </ngx-charts-bar-vertical>
+        </div>
+
+    </mat-card>
+</div>
+ <br>
     <!-- Navigation Buttons -->
     <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
     <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
