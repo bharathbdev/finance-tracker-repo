@@ -21,9 +21,10 @@ html {
 }
 
 .home-link,
+.data-link,
 .export-link {
     color: white !important;
-    ;
+        ;
     /* Set the text color to white */
     text-decoration: none;
     /* Remove underline from links */
@@ -104,7 +105,13 @@ button {
 
 .home-link {
 
-    margin-left: 800px;
+    margin-left: 10px;
+    /* Add margin to move the link to the right */
+}
+
+.data-link {
+
+    margin-left: 50px;
     /* Add margin to move the link to the right */
 }
 @media (min-width: 768px) {

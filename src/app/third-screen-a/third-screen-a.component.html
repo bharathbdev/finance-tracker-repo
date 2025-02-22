@@ -1,14 +1,17 @@
 <div class="container mt-5 d-flex flex-column align-items-center">
     <mat-card class="p-4" style="width: 100%; max-width: 800px; height: 80vh; overflow-y: auto;">
         <h2 class="text-center mb-4">CUSTOMER PROFILING</h2>
-        <form class="form-container">
+        <form class="form-container" #profileForm="ngForm">
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>NAME</mat-label>
-                <input matInput type="text" [(ngModel)]="profile.name" name="name" placeholder="Enter your name">
+                <input matInput type="text" [(ngModel)]="profile.name" name="name" placeholder="Enter your name"
+                    required>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['name']?.invalid">Name is
+                    required.</mat-error>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>AGE</mat-label>
-                <mat-select [(ngModel)]="profile.age" name="age">
+                <mat-select [(ngModel)]="profile.age" name="age" required>
                     <mat-option value="18-23">18 – 23</mat-option>
                     <mat-option value="24-29">24 – 29</mat-option>
                     <mat-option value="30-35">30 – 35</mat-option>
@@ -17,38 +20,49 @@
                     <mat-option value="54-60">54 – 60</mat-option>
                     <mat-option value="60+">60 +</mat-option>
                 </mat-select>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['age']?.invalid">Age is
+                    required.</mat-error>
             </mat-form-field>
             <div class="form-group mb-4">
                 <label>GENDER</label>
-                <mat-radio-group [(ngModel)]="profile.gender" name="gender" class="d-flex flex-column">
+                <mat-radio-group [(ngModel)]="profile.gender" name="gender" class="d-flex flex-column" required>
                     <mat-radio-button value="male">Male</mat-radio-button>
                     <mat-radio-button value="female">Female</mat-radio-button>
                     <mat-radio-button value="others">Others</mat-radio-button>
                 </mat-radio-group>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['gender']?.invalid">Gender is
+                    required.</mat-error>
             </div>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>LOCATION (Living area)</mat-label>
-                <mat-select [(ngModel)]="profile.location" name="location">
+                <mat-select [(ngModel)]="profile.location" name="location" required>
                     <mat-option value="rural">Rural</mat-option>
                     <mat-option value="semi-urban">Semi-urban</mat-option>
                     <mat-option value="urban">Urban</mat-option>
                 </mat-select>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['location']?.invalid">Location is
+                    required.</mat-error>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>PINCODE</mat-label>
                 <input matInput type="text" [(ngModel)]="profile.pincode" name="pincode"
-                    placeholder="Enter your pincode">
+                    placeholder="Enter your pincode" required>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['pincode']?.invalid">Pincode is
+                    required.</mat-error>
             </mat-form-field>
             <div class="form-group mb-4">
                 <label>PRIORITY LANGUAGES</label>
                 <div>
-                    <mat-checkbox [(ngModel)]="profile.languages.hindi" name="languages.hindi" value="hindi">Hindi</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.hindi" name="languages.hindi"
+                        value="hindi">Hindi</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.english" name="languages.english"
                         value="english">English</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.marathi" name="languages.marathi"
                         value="marathi">Marathi</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="profile.languages.tamil" name="languages.tamil" value="tamil">Tamil</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="profile.languages.telugu" name="languages.telugu" value="telugu">Telugu</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.tamil" name="languages.tamil"
+                        value="tamil">Tamil</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.telugu" name="languages.telugu"
+                        value="telugu">Telugu</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.kannada" name="languages.kannada"
                         value="kannada">Kannada</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.malayalam" name="languages.malayalam"
@@ -59,44 +73,60 @@
                         value="bengali">Bengali</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.punjabi" name="languages.punjabi"
                         value="punjabi">Punjabi</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="profile.languages.odia" name="languages.odia" value="odia">Odia</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.odia" name="languages.odia"
+                        value="odia">Odia</mat-checkbox>
                     <mat-checkbox [(ngModel)]="profile.languages.assamese" name="languages.assamese"
                         value="assamese">Assamese</mat-checkbox>
-                    <mat-checkbox [(ngModel)]="profile.languages.urdu" name="languages.urdu" value="urdu">Urdu</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="profile.languages.urdu" name="languages.urdu"
+                        value="urdu">Urdu</mat-checkbox>
                 </div>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['languages']?.invalid">At least one
+                    language is required.</mat-error>
             </div>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>OCCUPATION</mat-label>
-                <mat-select [(ngModel)]="profile.occupation" name="occupation">
+                <mat-select [(ngModel)]="profile.occupation" name="occupation" required>
                     <mat-option value="salaried">Salaried</mat-option>
                     <mat-option value="self-employed">Self-employed</mat-option>
                     <mat-option value="others">Others</mat-option>
                 </mat-select>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['occupation']?.invalid">Occupation is
+                    required.</mat-error>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>Annual INCOME</mat-label>
-                <input matInput type="text" [(ngModel)]="profile.income" name="income" placeholder="Enter your income">
+                <input matInput type="text" [(ngModel)]="profile.income" name="income" placeholder="Enter your income"
+                    required>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['income']?.invalid">Income is
+                    required.</mat-error>
             </mat-form-field>
             <div class="form-group mb-4">
                 <label>MARITAL STATUS</label>
-                <mat-radio-group [(ngModel)]="profile.maritalStatus" name="maritalStatus" class="d-flex flex-column">
+                <mat-radio-group [(ngModel)]="profile.maritalStatus" name="maritalStatus" class="d-flex flex-column"
+                    required>
                     <mat-radio-button value="married">Married</mat-radio-button>
                     <mat-radio-button value="unmarried">Unmarried</mat-radio-button>
                 </mat-radio-group>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['maritalStatus']?.invalid">Marital
+                    status is required.</mat-error>
             </div>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>DEPENDENT FAMILY MEMBERS</mat-label>
-                <mat-select [(ngModel)]="profile.dependents" name="dependents">
+                <mat-select [(ngModel)]="profile.dependents" name="dependents" required>
                     <mat-option value="0">0</mat-option>
                     <mat-option value="1-2">1-2</mat-option>
                     <mat-option value="3-4">3-4</mat-option>
                     <mat-option value="4+">4+</mat-option>
                 </mat-select>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['dependents']?.invalid">Dependent family
+                    members are required.</mat-error>
             </mat-form-field>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>MONTHLY SAVINGS</mat-label>
                 <input matInput type="text" [(ngModel)]="profile.savings" name="savings"
-                    placeholder="Enter your monthly savings">
+                    placeholder="Enter your monthly savings" required>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['savings']?.invalid">Monthly savings are
+                    required.</mat-error>
             </mat-form-field>
             <div class="form-group mb-4">
                 <label>YOUR NEXT FINANCIAL GOAL</label>
@@ -114,17 +144,22 @@
                     <mat-checkbox [(ngModel)]="profile.financialGoals.business" name="financialGoals.business"
                         value="business">Planning to start a Business (Start-up)</mat-checkbox>
                 </div>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['financialGoals']?.invalid">At least one
+                    financial goal is required.</mat-error>
             </div>
             <mat-form-field class="form-field" appearance="fill">
                 <mat-label>INSURANCE</mat-label>
-                <mat-select [(ngModel)]="profile.insurance" name="insurance">
+                <mat-select [(ngModel)]="profile.insurance" name="insurance" required>
                     <mat-option value="life">Life</mat-option>
                     <mat-option value="health">Health</mat-option>
                     <mat-option value="both">Both</mat-option>
                     <mat-option value="none">None</mat-option>
                 </mat-select>
+                <mat-error *ngIf="profileForm.submitted && profileForm.controls['insurance']?.invalid">Insurance is
+                    required.</mat-error>
             </mat-form-field>
-            <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="primary" class="w-100 mb-2"
+                (click)="validateAndNavigate(profileForm)">Next</button>
             <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
         </form>
     </mat-card>

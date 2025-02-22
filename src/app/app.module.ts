@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms'; // Import ReactiveFormsModule
 import { AppComponent } from './app.component';
 import { FirstScreenComponent } from './first-screen/first-screen.component';
 import { SecondScreenComponent } from './second-screen/second-screen.component';
@@ -30,6 +31,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TenScreenComponent } from './ten-screen/ten-screen.component';
+import { DataViewComponent } from './data-view/data-view.component';
 
 @NgModule({
   declarations: [
@@ -46,11 +48,13 @@ import { TenScreenComponent } from './ten-screen/ten-screen.component';
     NinthScreenComponent,
     FinishComponent,
     HomeComponent,
-    TenScreenComponent
+    TenScreenComponent,
+    DataViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     MatCardModule,

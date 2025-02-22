@@ -298,6 +298,7 @@ export class SixthScreenComponent implements OnInit {
       "4+": 0
     };
 
+    
     // Marital status score
     const maritalScore: number = maritalStatus === "married" ? 1 : 0;
 

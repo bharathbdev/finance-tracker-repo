@@ -1,19 +1,29 @@
 <div class="first-screen-container d-flex flex-column align-items-center justify-content-center">
     <div class="card p-4" style="width: 100%; max-width: 400px;">
         <h2 class="text-center mb-4">Login</h2>
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="navigateToNext()">
             <div class="form-group mb-3">
                 <label for="email">Email-id:</label>
-                <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email"
+                <input type="email" class="form-control" id="email" formControlName="email"
                     placeholder="Enter your email">
+                <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+                    class="text-danger">
+                    <small *ngIf="loginForm.controls['email'].errors?.['required']">Email is required.</small>
+                    <small *ngIf="loginForm.controls['email'].errors?.['email']">Invalid email format.</small>
+                </div>
             </div>
             <div class="form-group mb-3">
                 <label for="mobile">Mobile No:</label>
-                <input type="tel" class="form-control" id="mobile" [(ngModel)]="mobile" name="mobile"
+                <input type="tel" class="form-control" id="mobile" formControlName="mobile"
                     placeholder="Enter your mobile number">
+                <div *ngIf="loginForm.controls['mobile'].invalid && (loginForm.controls['mobile'].dirty || loginForm.controls['mobile'].touched)"
+                    class="text-danger">
+                    <small *ngIf="loginForm.controls['mobile'].errors?.['required']">Mobile number is required.</small>
+                    <small *ngIf="loginForm.controls['mobile'].errors?.['pattern']">Invalid mobile number format. Must
+                        be 10 digits.</small>
+                </div>
             </div>
-            <button type="button" class="btn btn-primary w-100" (click)="navigateToNext()"
-                [disabled]="isNextDisabled">Login</button>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
         </form>
     </div>
     <div class="mt-4 text-center">

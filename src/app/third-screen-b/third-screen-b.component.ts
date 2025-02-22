@@ -9,6 +9,7 @@ import { openDB } from 'idb';
 })
 export class ThirdScreenBComponent implements OnInit {
   businessProfile: any = null;
+  continueWithUs: boolean = false;
   businessProfiles = [
     {
       cifId: 333678546,
@@ -121,6 +122,33 @@ export class ThirdScreenBComponent implements OnInit {
       this.router.navigate(['/first-screen']);
     }
   }
+
+
+  async onSubmit() {
+    const db = await openDB('FinanceTrackerDB', 1);
+    const userEmail = localStorage.getItem('email');
+    if (userEmail) {
+      const userInfo = await db.getAllFromIndex('userInfo', 'email', userEmail);
+      if (userInfo.length > 0) {
+        userInfo[0].businessProfile = this.businessProfile;
+        userInfo[0].continueWithUs = this.continueWithUs;
+        await db.put('userInfo', userInfo[0]);
+        if (this.continueWithUs) {
+          alert('Congratulations for choosing us!');
+        } else {
+          alert('We will connect with you shortly to provide more information, thank you.');
+        }
+        this.router.navigate(['/']);
+      } else {
+        alert('User not found.');
+        this.router.navigate(['/first-screen']);
+      }
+    } else {
+      alert('User email not found.');
+      this.router.navigate(['/first-screen']);
+    }
+  }
+
 
   navigateToBack() {
     this.router.navigate(['/second-screen']);

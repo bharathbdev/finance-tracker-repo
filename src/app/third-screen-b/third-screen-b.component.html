@@ -14,7 +14,11 @@
             <p><strong>Location:</strong> {{ businessProfile.location }}</p>
             <p><strong>Pincode:</strong> {{ businessProfile.pincode }}</p>
         </div>
-        <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>
-        <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+<div class="form-group mt-4">
+    <mat-checkbox [(ngModel)]="continueWithUs">Would you like to have a tie-up with IDBI B2B (our Customer will
+        connect you for his or Needs)</mat-checkbox>
+</div>
+<br>
+<button mat-raised-button color="primary" class="w-100 mb-2" (click)="onSubmit()">Submit</button>
     </mat-card>
 </div>

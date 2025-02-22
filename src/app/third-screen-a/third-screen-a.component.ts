@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { openDB } from 'idb';
 
@@ -7,7 +7,7 @@ import { openDB } from 'idb';
   templateUrl: './third-screen-a.component.html',
   styleUrls: ['./third-screen-a.component.css']
 })
-export class ThirdScreenAComponent implements OnInit {
+export class ThirdScreenAComponent {
   profile: any = {
     name: '',
     age: '',
@@ -17,7 +17,17 @@ export class ThirdScreenAComponent implements OnInit {
     languages: {
       hindi: false,
       english: false,
-      marathi: false
+      marathi: false,
+      tamil: false,
+      telugu: false,
+      kannada: false,
+      malayalam: false,
+      gujarati: false,
+      bengali: false,
+      punjabi: false,
+      odia: false,
+      assamese: false,
+      urdu: false
     },
     occupation: '',
     income: '',
@@ -82,5 +92,13 @@ export class ThirdScreenAComponent implements OnInit {
 
   navigateToBack() {
     this.router.navigate(['/second-screen']);
+  }
+
+  validateAndNavigate(form: any) {
+    if (form.valid) {
+      this.navigateToNext();
+    } else {
+      form.control.markAllAsTouched();
+    }
   }
 }

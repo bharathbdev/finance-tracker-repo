@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { openDB } from 'idb';
 
 @Component({
@@ -7,15 +8,20 @@ import { openDB } from 'idb';
   templateUrl: './first-screen.component.html',
   styleUrls: ['./first-screen.component.css']
 })
-export class FirstScreenComponent {
-  email: string = '';
-  mobile: string = '';
-  isNextDisabled: boolean = false;
+export class FirstScreenComponent implements OnInit {
+  loginForm!: FormGroup;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
+    });
+  }
 
   async navigateToNext() {
-    if (this.email && this.mobile) {
+    if (this.loginForm.valid) {
       const db = await openDB('FinanceTrackerDB', 1, {
         upgrade(db) {
           if (!db.objectStoreNames.contains('userInfo')) {
@@ -25,22 +31,15 @@ export class FirstScreenComponent {
         },
       });
 
-      const userInfo = await db.getAllFromIndex('userInfo', 'email', this.email);
-
+      const userInfo = await db.getAllFromIndex('userInfo', 'email', this.loginForm.value.email);
       if (userInfo.length > 0) {
-        // alert('User already found.');
-        // this.isNextDisabled = true; // Disable the "Next" button
-        // return;
+        // User already exists, handle accordingly
+      } else {
+        await db.put('userInfo', { email: this.loginForm.value.email, mobile: this.loginForm.value.mobile });
       }
-    else{
-      
+      localStorage.setItem('email', this.loginForm.value.email);
 
-      await db.put('userInfo', { email: this.email, mobile: this.mobile });
-    }
-      localStorage.setItem('email', this.email);
       this.router.navigate(['/second-screen']);
-    } else {
-      alert('Please enter both email and mobile number.');
     }
   }
 }

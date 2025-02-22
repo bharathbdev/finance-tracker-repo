@@ -43,8 +43,8 @@ export class SecondScreenComponent implements OnInit {
       if (userInfo.length > 0) {
         this.selectedIndividual = userInfo[0].selectedIndividual || '';
         this.selectedBusiness = userInfo[0].selectedBusiness || '';
-        this.selectedExistingIndividual = userInfo[0].selectedExistingIndividual ? JSON.parse(userInfo[0].selectedExistingIndividual) : null;
-        this.selectedExistingBusiness = userInfo[0].selectedExistingBusiness ? JSON.parse(userInfo[0].selectedExistingBusiness) : null;
+        this.selectedExistingIndividual = userInfo[0].selectedExistingIndividual ? userInfo[0].selectedExistingIndividual : null;
+        this.selectedExistingBusiness = userInfo[0].selectedExistingBusiness ? userInfo[0].selectedExistingBusiness : null;
         this.updateDropdownState();
       } else {
         alert('User not found.');
@@ -63,6 +63,7 @@ export class SecondScreenComponent implements OnInit {
 
   onIndividualChange() {
     if (this.selectedIndividual) {
+      this.selectedExistingIndividual = this.existingIndividuals[0];
       this.selectedBusiness = ''; // Clear business selection if user selects individual
       this.selectedExistingBusiness = null;
     }
@@ -71,6 +72,7 @@ export class SecondScreenComponent implements OnInit {
 
   onBusinessChange() {
     if (this.selectedBusiness) {
+      this.selectedExistingBusiness = this.existingBusinesses[0];
       this.selectedIndividual = ''; // Clear individual selection if user selects business
       this.selectedExistingIndividual = null;
     }

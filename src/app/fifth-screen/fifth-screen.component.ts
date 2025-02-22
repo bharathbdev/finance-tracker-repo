@@ -65,4 +65,38 @@ export class FifthScreenComponent {
   onLanguageChange(event: any): void {
     this.selectedLanguage = event.value;
   }
+
+  updateAllocation(changedField: string) {
+    const { equityMf, debt, fdRd, gold } = this.allocation;
+    const fields = ['equityMf', 'debt', 'fdRd', 'gold'];
+    const total = fields.reduce((sum, field) => sum + (parseFloat(this.allocation[field]) || 0), 0);
+    const remaining = 100 - total;
+
+    if (remaining >= 0) {
+      this.allocation[changedField] = parseFloat(this.allocation[changedField]) || 0;
+      const otherFields = fields.filter(field => field !== changedField);
+      const emptyFields = otherFields.filter(field => this.allocation[field] === '');
+
+      if (emptyFields.length === 1) {
+        this.allocation[emptyFields[0]] = remaining.toFixed(2);
+      }
+    } else {
+      alert('The total allocation must not exceed 100%. Please adjust your inputs.');
+      this.allocation[changedField] = '';
+    }
+  }
+
+  validateAndNavigate() {
+    const { equityMf, debt, fdRd, gold } = this.allocation;
+    if (equityMf !== '' && debt !== '' && fdRd !== '' && gold !== '') {
+      const total = parseFloat(equityMf) + parseFloat(debt) + parseFloat(fdRd) + parseFloat(gold);
+      if (total === 100) {
+        this.navigateToNext();
+      } else {
+        alert('The total allocation must be 100%. Please adjust your inputs.');
+      }
+    } else {
+      alert('Please fill in all the fields.');
+    }
+  }
 }
