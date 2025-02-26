@@ -2,7 +2,8 @@
     <mat-card class="p-4 scrollable-card" style="width: 100%; max-width: 800px;">
         <h2 class="text-center mb-4">Your Selected Goals</h2>
         <div *ngFor="let item of finalSelection" class="goal-item mb-4">
-            <img [src]="item.imagePath" alt="{{ item.name }}" class="goal-image">
+            <img [src]="item.imagePath" alt="{{ item.name }}" class="goal-image"
+                (click)="openImageDialog(item.imagePath)">
             <div [innerHTML]="item.profile" class="goal-profile"></div>
         </div>
         <button mat-raised-button color="primary" class="w-100 mb-2" (click)="navigateToNext()">Next</button>

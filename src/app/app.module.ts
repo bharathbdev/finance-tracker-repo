@@ -32,6 +32,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TenScreenComponent } from './ten-screen/ten-screen.component';
 import { DataViewComponent } from './data-view/data-view.component';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DataViewComponent } from './data-view/data-view.component';
     FinishComponent,
     HomeComponent,
     TenScreenComponent,
-    DataViewComponent
+    DataViewComponent,
+    ImageDialogComponent
   ],
   imports: [
     BrowserModule,

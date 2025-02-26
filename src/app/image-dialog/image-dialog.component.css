@@ -1,0 +1,11 @@
+.image-dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.zoomed-image {
+    max-width: 100%;
+    max-height: 100%;
+}

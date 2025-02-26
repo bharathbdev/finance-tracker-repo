@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { openDB } from 'idb';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-eighth-screen',
@@ -99,7 +101,7 @@ export class EighthScreenComponent implements OnInit {
     `
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dialog: MatDialog) { }
 
   async ngOnInit() {
     const db = await openDB('FinanceTrackerDB', 1);
@@ -131,6 +133,13 @@ export class EighthScreenComponent implements OnInit {
       business: 'Planning to start a Business (Start-up) - Business startup customer connected to business consultants, financial advisors etc.'
     };
     return labels[key] || key;
+  }
+
+  openImageDialog(imagePath: string): void {
+    this.dialog.open(ImageDialogComponent, {
+      data: { imagePath },
+      panelClass: 'custom-dialog-container'
+    });
   }
 
   async navigateToNext() {
