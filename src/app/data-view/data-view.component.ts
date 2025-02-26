@@ -10,7 +10,7 @@ import { openDB } from 'idb';
 })
 export class DataViewComponent implements OnInit {
   data: any[] = [];
-  displayedColumns: string[] = ['serialNumber', 'email', 'mobile', 'role', 'name', 'age', 'financialGoals'];
+  displayedColumns: string[] = ['serialNumber', 'email', 'mobile', 'role', 'name', 'age', 'financialGoals', 'feedback'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -32,7 +32,8 @@ export class DataViewComponent implements OnInit {
         name: '',
         age: '',
         role: "",
-        financialGoals: ''
+        financialGoals: '',
+        feedback:  ""
       };
 
       if (item?.selectedIndividual) {
@@ -40,11 +41,13 @@ export class DataViewComponent implements OnInit {
         obj.name = item?.customerProfile?.name || "";
         obj.age = item?.customerProfile?.age || "";
         obj.financialGoals = item?.customerProfile?.financialGoals ? this.formatFinancialGoals(item?.customerProfile?.financialGoals) : "";
+        obj.feedback = item?.feedback || "";
       } else if (item?.selectedBusiness) {
         obj.role = "Business_" + item?.selectedBusiness || "";
         obj.name = item?.selectedExistingBusiness?.name || "";
         obj.age = '';
         obj.financialGoals = item?.selectedExistingBusiness?.natureOfBusiness || "";
+        obj.feedback = item?.feedback || "";
       }
 
       return obj;
