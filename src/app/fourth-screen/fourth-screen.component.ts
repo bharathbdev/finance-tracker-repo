@@ -18,7 +18,7 @@ export class FourthScreenComponent implements OnInit {
         { text: '41-60', value: '41-60', score: 1 },
         { text: '60+', value: '60+', score: 1 }
       ],
-      selectedOption: null
+      selectedOption: null as string | null
     },
     {
       text: 'What is your annual income range?',
@@ -29,7 +29,7 @@ export class FourthScreenComponent implements OnInit {
         { text: '₹10-25 lakh', value: '10-25-lakh', score: 3 },
         { text: '₹25 lakh+', value: '25-lakh+', score: 3 }
       ],
-      selectedOption: null
+      selectedOption: null as string | null
     },
     {
       text: 'What is your monthly savings as a % of income?',
@@ -210,7 +210,31 @@ export class FourthScreenComponent implements OnInit {
           if (savedAnswer) {
             question.selectedOption = savedAnswer.selectedOption;
           }
+
+          if (question.name === 'ageGroup') {
+            let decideAge = this.mapAgeToValue(userInfo[0].customerProfile.age);
+            question.selectedOption = decideAge
+
+          }
+
+          if (question.name === 'annualIncome') {
+            let decideIncome = this.mapIncomeToValue(userInfo[0].customerProfile.income);
+            question.selectedOption = decideIncome
+
+          }
+
+          if (question.name === 'dependents') {
+            let decideDependents = this.mapDependentsToValue(userInfo[0].customerProfile.dependents);
+            question.selectedOption = decideDependents;
+          }
+
+          if (question.name === 'insuranceType') {
+            let decideInsuranceType = this.mapInsuranceToValue(userInfo[0].customerProfile.insurance);
+            question.selectedOption = decideInsuranceType;
+          }
+
         });
+
       } else {
         alert('User not found.');
         this.router.navigate(['/first-screen']);
@@ -221,6 +245,64 @@ export class FourthScreenComponent implements OnInit {
     }
   }
 
+
+  mapAgeToValue(age: string): string {
+    switch (age) {
+      case '18-23':
+      case '24-29':
+        return 'below-25';
+      case '30-35':
+      case '36-45':
+        return '25-40';
+      case '46-53':
+        return '41-60';
+      case '54-60':
+      case '60+':
+        return '60+';
+      default:
+        return '';
+    }
+  }
+
+  mapIncomeToValue(income: number): string {
+    if (income < 500000) {
+      return 'below-5-lakh';
+    } else if (income >= 500000 && income < 1000000) {
+      return '5-10-lakh';
+    } else if (income >= 1000000 && income < 2500000) {
+      return '10-25-lakh';
+    } else {
+      return '25-lakh+';
+    }
+  }
+
+  mapDependentsToValue(dependents: string): string {
+    switch (dependents) {
+      case '0':
+        return 'no-dependents';
+      case '1-2':
+        return 'few-dependents';
+      case '3-4':
+      case '4+':
+        return 'many-dependents';
+      default:
+        return '';
+    }
+  }
+
+  mapInsuranceToValue(insurance: string): string {
+    switch (insurance) {
+      case 'life':
+      case 'health':
+        return 'life-health-insurance';
+      case 'both':
+        return 'comprehensive-coverage';
+      case 'none':
+        return 'no-insurance';
+      default:
+        return '';
+    }
+  }
   async calculateScore() {
     let totalScore = 0;
     const answers = this.questions.map(question => {

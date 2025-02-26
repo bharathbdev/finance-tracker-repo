@@ -17,6 +17,9 @@
                     <mat-radio-button value="new">New</mat-radio-button>
                 </mat-radio-group>
             </div>
+<div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
+            <p>Click the link for tax calculation. After completing it, return to provide feedback on the financial tracker.</p>
+            </div>
             <div class="form-group mb-3" *ngIf="taxPlan.taxPlanning === 'yes'">
                 <label>Tax Calculation Excel Links</label>
                 <br>

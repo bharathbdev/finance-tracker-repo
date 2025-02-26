@@ -77,7 +77,7 @@ export class FifthScreenComponent {
       const otherFields = fields.filter(field => field !== changedField);
       const emptyFields = otherFields.filter(field => this.allocation[field] === '');
 
-      if (emptyFields.length === 1) {
+      if (emptyFields.length === 1 && remaining >= 0 && this.allocation[changedField].toString().length >= 2) {
         this.allocation[emptyFields[0]] = remaining.toFixed(2);
       }
     } else {
