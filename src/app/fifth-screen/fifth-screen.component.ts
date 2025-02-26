@@ -16,8 +16,8 @@ export class FifthScreenComponent {
   };
   savings: any = 0;
 
-  languages: string[] = ['english', 'marathi', 'odia', 'telugu', 'bengali', 'malayalam', 'hindi', 'tamil', 'kannada'];
-  selectedLanguage: string = 'english';
+  languages: string[] = ['English', 'Marathi', 'Odia', 'Telugu', 'Bengali', 'Malayalam', 'Hindi', 'Tamil', 'Kannada'];
+  selectedLanguage: string = 'English';
 
   constructor(private router: Router) { }
 
