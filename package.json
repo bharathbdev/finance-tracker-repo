@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href 'https://bharathbdev.github.io/finance-tracker-repo/' && npx ngh --dir=dist/finance-tracker/browser"
   },
   "private": true,
   "dependencies": {
