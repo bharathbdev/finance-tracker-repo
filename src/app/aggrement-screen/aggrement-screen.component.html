@@ -1,0 +1,19 @@
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <mat-card class="p-4" style="width: 100%; max-width: 800px;">
+        <h2 class="text-center mb-4">Customer Agreement</h2>
+        <p>In India, data privacy and protection are governed by the Digital Personal Data Protection Act, 2023 (DPDP
+            Act) and regulated by the Ministry of Electronics and Information Technology (MeitY). This act outlines how
+            personal data should be collected, stored, and processed while ensuring user consent and security.</p>
+        <p>Customer Agreement Message:</p>
+        <p>"I acknowledge and agree to share my personal information as per the applicable terms and conditions. I
+            understand that my data will be used in accordance with the Data Protection Act."</p>
+        <form class="form-container">
+            <div class="form-group mb-3">
+                <mat-checkbox [(ngModel)]="isAcknowledged" name="acknowledge">I acknowledge and agree</mat-checkbox>
+            </div>
+            <button mat-raised-button color="primary" class="w-100 mb-2" [disabled]="!isAcknowledged"
+                (click)="navigateToNext()">Next</button>
+            <button mat-raised-button color="accent" class="w-100" (click)="navigateToBack()">Back</button>
+        </form>
+    </mat-card>
+</div>

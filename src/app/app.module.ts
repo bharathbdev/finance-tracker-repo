@@ -33,6 +33,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TenScreenComponent } from './ten-screen/ten-screen.component';
 import { DataViewComponent } from './data-view/data-view.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
+import { AgreementScreenComponent } from './aggrement-screen/aggrement-screen.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ImageDialogComponent } from './image-dialog/image-dialog.component';
     HomeComponent,
     TenScreenComponent,
     DataViewComponent,
-    ImageDialogComponent
+    ImageDialogComponent,
+    AgreementScreenComponent
   ],
   imports: [
     BrowserModule,

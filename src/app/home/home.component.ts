@@ -10,6 +10,6 @@ export class HomeComponent {
   constructor(private router: Router) { }
 
   navigateToFirstScreen() {
-    this.router.navigate(['/first-screen']); // Adjust the route as needed
+    this.router.navigate(['/agreement']); // Adjust the route as needed
   }
 }

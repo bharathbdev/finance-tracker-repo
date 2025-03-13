@@ -14,9 +14,11 @@ import { NinthScreenComponent } from './ninth-screen/ninth-screen.component';
 import { FinishComponent } from './finish/finish.component';
 import { TenScreenComponent } from './ten-screen/ten-screen.component';
 import { DataViewComponent } from './data-view/data-view.component';
+import { AgreementScreenComponent } from './aggrement-screen/aggrement-screen.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'agreement', component: AgreementScreenComponent },
   { path: 'data-view', component: DataViewComponent },
   { path: 'first-screen', component: FirstScreenComponent },
   { path: 'second-screen', component: SecondScreenComponent },
