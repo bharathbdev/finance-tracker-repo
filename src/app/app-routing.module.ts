@@ -15,6 +15,7 @@ import { FinishComponent } from './finish/finish.component';
 import { TenScreenComponent } from './ten-screen/ten-screen.component';
 import { DataViewComponent } from './data-view/data-view.component';
 import { AgreementScreenComponent } from './aggrement-screen/aggrement-screen.component';
+import { NewScreenComponent } from './new-screen/new-screen.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'eighth-screen', component: EighthScreenComponent },
   { path: 'ninth-screen', component: NinthScreenComponent },
   { path: 'tenth-screen', component: TenScreenComponent },
-  { path: 'finish', component: FinishComponent }
+  { path: 'finish', component: FinishComponent },
+  { path: 'new', component: NewScreenComponent }
 ];
 
 @NgModule({

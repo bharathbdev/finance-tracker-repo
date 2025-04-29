@@ -1,0 +1,19 @@
+.whatsapp-button {
+    background-color: #25D366;
+    /* WhatsApp green */
+    color: white;
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851;
+}
+
+.phone-call-button {
+    background-color: #f44336;
+    /* Red color for call button */
+    color: white;
+}
+
+.phone-call-button:hover {
+    background-color: #d32f2f;
+}

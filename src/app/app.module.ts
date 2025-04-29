@@ -34,6 +34,7 @@ import { TenScreenComponent } from './ten-screen/ten-screen.component';
 import { DataViewComponent } from './data-view/data-view.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { AgreementScreenComponent } from './aggrement-screen/aggrement-screen.component';
+import { NewScreenComponent } from './new-screen/new-screen.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AgreementScreenComponent } from './aggrement-screen/aggrement-screen.co
     TenScreenComponent,
     DataViewComponent,
     ImageDialogComponent,
-    AgreementScreenComponent
+    AgreementScreenComponent,
+    NewScreenComponent
   ],
   imports: [
     BrowserModule,
